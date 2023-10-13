@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: Bebas;
+    src: url(./fonts/Bebas-Regular.ttf);
+}
+
+*{
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+label,
+a,
+button,
+i{
+    font-family: Bebas !important;
+}
+
+.textStyle{
+    background-clip: text;
+    background-color: #EAD820;
+    color: black;
+    letter-spacing: 3px;
+    -webkit-text-stroke-color: transparent;
+    -webkit-text-stroke-width: 7px;
+}
+.textStyle2{
+    background-clip: text;
+    background-color: black;
+    color: #FFD856;
+    letter-spacing: 2px;
+    -webkit-text-stroke-color: transparent;
+    -webkit-text-stroke-width: 7px;
+}
+@media screen and (max-width: 768px) {
+    .textStyle{
+        background-clip: text;
+        background-color: #EAD820;
+        color: black;
+        letter-spacing: 5px;
+        -webkit-text-stroke-color: transparent;
+        -webkit-text-stroke-width: 6px;
+    }
+}
+
+.navItems a.active.active-mustard {
+    background-color: #FFD856;
+}
+
+/* Apply background color for active-black */
+.navItems a.active.active-black {
+    background-color: black;
+    color: #FFFF00;
+}
+
+
+/* .swiper-pagination{
+    position: static;
+} */
+.swiper{
+    /* border: 4px solid red; */
+    padding-bottom: 55px !important;
+}
+.swiper-pagination-bullets{
+    /* border: 4px solid red; */
+    /* margin-top: 15px; */
+    /* bottom: -20px !important; */
+    z-index: 30 !important;
+}
+.swiper-pagination-bullet{
+    background-color: black;
+    width: 15px;
+    height: 15px;
+    opacity: 1;
+}
+.swiper-pagination-bullet-active{
+    background-color: #FFD856;
+}
+
+
+
+
+/* Common Navbar Search Box */
+.search-box {
+    transition: width 0.4s ease-in-out;
+    width: 0;
+    overflow: hidden;
+}
+
+.open {
+    width: 400px;
+}
+@media screen and (max-width: 700px) {
+    .search-box {
+        transition: width 0.4s ease-in-out;
+        width: 0;
+        overflow: hidden;
+    }
+    .open {
+        width: auto;
+    }
+}
+
+/* Loader */
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite
+  }
+  .loader::before , .loader::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 5px solid #FFF;
+    animation: prixClipFix 2s linear infinite ;
+  }
+  .loader::after{
+    border-color: #EAD820;
+    animation: prixClipFix 2s linear infinite , rotate 0.5s linear infinite reverse;
+    inset: 6px;
+  }
+
+  @keyframes rotate {
+    0%   {transform: rotate(0deg)}
+    100%   {transform: rotate(360deg)}
+  }
+
+  @keyframes prixClipFix {
+      0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+      25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+      50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+      75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+      100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+  }
