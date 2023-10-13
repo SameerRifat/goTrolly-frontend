@@ -14,13 +14,13 @@ const isLocalBackend = process.env.VITE_REACT_APP_LOCAL_BACKEND === 'true';
 
 export default defineConfig({
   plugins: [react()],
-  server: {
-    proxy: {
-      "/api": {
-        target: isLocalBackend ? process.env.VITE_REACT_APP_API_URL : "https://gotrolly-api.onrender.com/",
-        changeOrigin: true,
-        secure: false,
-      },
-    },
-  },
+  // server: {
+  //   proxy: {
+  //     "/api": {
+  //       target: isLocalBackend ? process.env.VITE_REACT_APP_API_URL : "https://gotrolly-api.onrender.com/",
+  //       changeOrigin: true,
+  //       secure: false,
+  //     },
+  //   },
+  // },
 })

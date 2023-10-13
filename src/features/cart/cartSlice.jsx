@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios'
+import API from '../../components/APIs/Api';
+const { http } = API();
 
 const initialState = {
     cartItems: localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : [],
@@ -7,7 +9,14 @@ const initialState = {
 }
 
 export const addItemsToCart = createAsyncThunk('cart/addItemsToCart', async (cartData) => {
-    const { data } = await axios.get(`/api/v1/product/${cartData.id}`);
+    // const { data } = await axios.get(`/api/v1/product/${cartData.id}`);
+    const token = JSON.parse(localStorage.getItem('token'));
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+        },
+    };
+    const { data } = await http.get(`/api/v1/product/${cartData.id}`, config);
     const item = {
         product: data.product._id,
         name: data.product.name,

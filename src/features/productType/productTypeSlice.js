@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import API from '../../components/APIs/Api';
+const { http } = API();
 
 const initialState = {
     createProductTypeLoading: false,
@@ -44,9 +46,16 @@ export const createProductType = createAsyncThunk('productType/createProductType
     //     console.log(obj)
     // }
     // const config = { headers: { 'Content-Type': 'multipart/form-data' }, withCredentials: true };
-    const config = { withCredentials: true };
+    // const config = { withCredentials: true };
+    const token = JSON.parse(localStorage.getItem('token'));
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+        },
+    };
     try {
-        const response = await axios.post("/api/v1/admin/productType/new", formData, config)
+        // const response = await axios.post("/api/v1/admin/productType/new", formData, config)
+        const response = await http.post("/api/v1/admin/productType/new", formData, config)
         return response.data
     } catch (error) {
         if (error.response) {
@@ -65,7 +74,8 @@ export const createProductType = createAsyncThunk('productType/createProductType
 // get all productTypes
 export const getProductTypes = createAsyncThunk('productType/getProductTypes', async () => {
     try {
-        const response = await axios.get("/api/v1/productTypes")
+        // const response = await axios.get("/api/v1/productTypes")
+        const response = await http.get("/api/v1/productTypes")
         return response.data
     } catch (error) {
         if (error.response) {
@@ -84,9 +94,16 @@ export const getProductTypes = createAsyncThunk('productType/getProductTypes', a
 
 export const updateProductType = createAsyncThunk('productType/updateProductType', async ({id, formData})=>{
     // const config = {headers: {'Content-Type': 'multipart/form-data'}, withCredentials: true};
-    const config = { withCredentials: true };
+    // const config = { withCredentials: true };
+    const token = JSON.parse(localStorage.getItem('token'));
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+        },
+    };
     try {
-        const response = await axios.put(`/api/v1/admin/productType/${id}`, formData, config)
+        // const response = await axios.put(`/api/v1/admin/productType/${id}`, formData, config)
+        const response = await http.put(`/api/v1/admin/productType/${id}`, formData, config)
         return response.data
     } catch (error) {
         if (error.response) {
@@ -105,7 +122,14 @@ export const updateProductType = createAsyncThunk('productType/updateProductType
 
 export const deleteProductType = createAsyncThunk('productType/deleteProductType', async (id) => {
     try {
-        const response = await axios.delete(`/api/v1/admin/productType/${id}`)
+        // const response = await axios.delete(`/api/v1/admin/productType/${id}`)
+        const token = JSON.parse(localStorage.getItem('token'));
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+            },
+        };
+        const response = await http.delete(`/api/v1/admin/productType/${id}`, config)
         return response.data
     } catch (error) {
         if (error.response) {

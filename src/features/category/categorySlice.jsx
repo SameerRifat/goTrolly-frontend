@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import API from '../../components/APIs/Api';
+const { http } = API();
 
 const initialState = {
     createCategoryLoading: false,
@@ -40,9 +42,17 @@ const initialState = {
 
 // createCategory
 export const createCategory = createAsyncThunk('category/createCategory', async (formData) => {
-    const config = { headers: { 'Content-Type': 'multipart/form-data' }, withCredentials: true };
+    // const config = { headers: { 'Content-Type': 'multipart/form-data' }, withCredentials: true };
+    const token = JSON.parse(localStorage.getItem('token'));
+    const config = {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+        },
+    };
     try {
-        const response = await axios.post("/api/v1/admin/category/new", formData, config)
+        // const response = await axios.post("/api/v1/admin/category/new", formData, config)
+        const response = await http.post("/api/v1/admin/category/new", formData, config)
         return response.data
     } catch (error) {
         if (error.response) {
@@ -60,8 +70,15 @@ export const createCategory = createAsyncThunk('category/createCategory', async 
 })
 // get all categories
 export const getCategories = createAsyncThunk('category/getCategories', async () => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+        },
+    };
     try {
-        const response = await axios.get("/api/v1/categories")
+        // const response = await axios.get("/api/v1/categories")
+        const response = await http.get("/api/v1/categories", config)
         return response.data
     } catch (error) {
         if (error.response) {
@@ -79,9 +96,17 @@ export const getCategories = createAsyncThunk('category/getCategories', async ()
 })
 
 export const updateCategory = createAsyncThunk('category/updateCategory', async (data)=>{
-    const config = {headers: {'Content-Type': 'multipart/form-data'}, withCredentials: true};
+    // const config = {headers: {'Content-Type': 'multipart/form-data'}, withCredentials: true};
+    const token = JSON.parse(localStorage.getItem('token'));
+    const config = {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+        },
+    };
     try {
-        const response = await axios.put(`/api/v1/admin/category/${data.id}`, data.formData, config)
+        // const response = await axios.put(`/api/v1/admin/category/${data.id}`, data.formData, config)
+        const response = await http.put(`/api/v1/admin/category/${data.id}`, data.formData, config)
         return response.data
     } catch (error) {
         if (error.response) {
@@ -99,8 +124,15 @@ export const updateCategory = createAsyncThunk('category/updateCategory', async 
 })
 
 export const deleteCategory = createAsyncThunk('category/deleteCategory', async (id) => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+        },
+    };
     try {
-        const response = await axios.delete(`/api/v1/admin/category/${id}`)
+        // const response = await axios.delete(`/api/v1/admin/category/${id}`)
+        const response = await http.delete(`/api/v1/admin/category/${id}`, config)
         return response.data
     } catch (error) {
         if (error.response) {

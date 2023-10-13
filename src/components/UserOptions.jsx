@@ -36,22 +36,40 @@ const UserOptions = ({ user }) => {
     function logoutUser() {
         dispatch(logout())
         // alert.success("Logout Successfully");
-        alert("Logout Successfully")
-        navigate("/")
+        // alert("Logout Successfully")
+        // navigate("/")
     }
     function dashboard() {
         navigate("/admin/products");
     }
-    // useEffect(() => {
-    //     if (!isAuthenticated) {
-    //         alert.success("Logout Successfully");
-    //         navigate('/')
-    //     }
-    //     if (error) {
-    //         alert.error(error)
-    //         dispatch(clear_errors());
-    //     }
-    // }, [isAuthenticated, error, dispatch, navigate])
+    useEffect(() => {
+        if (!isAuthenticated) {
+            toast.error("Logged out Successfully", {
+                position: "bottom-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            navigate('/')
+        }
+        if (error) {
+            toast.error(error, {
+                position: "bottom-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            dispatch(clear_errors());
+        }
+    }, [isAuthenticated, error, dispatch, navigate])
     return (
         <>
             {/* Profile dropdown */}

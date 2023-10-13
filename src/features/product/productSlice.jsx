@@ -1,5 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import API from '../../components/APIs/Api';
+const { http } = API();
+
 
 const initialState = {
     createProductLoading: false,
@@ -32,7 +35,8 @@ const initialState = {
 export const createProduct = createAsyncThunk('product/createProduct', async (formData) => {
     const config = { headers: { 'Content-Type': 'multipart/form-data' }, withCredentials: true };
     try {
-        const response = await axios.post("/api/v1/admin/product/new", formData, config)
+        // const response = await axios.post("/api/v1/admin/product/new", formData, config)
+        const response = await http.post("/api/v1/admin/product/new", formData, config)
         return response.data
     } catch (error) {
         if (error.response) {
@@ -60,13 +64,21 @@ export const fetchProducts = createAsyncThunk('product/fetchProducts', async ({ 
     // }
     const link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}&order=${order}${category ? `&category=${category}` : ''}${productType ? `&productType=${productType}` : ''}${brand ? `&brand=${brand}` : ''}`;
     // console.log(category)
-    const response = await axios.get(link);
+    // const response = await axios.get(link);
+    const response = await http.get(link);
     return response.data;
 })
 // get all Products
 export const getAdminProducts = createAsyncThunk('product/getAdminProducts', async () => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+        },
+    };
     try {
-        const response = await axios.get("/api/v1/admin/products")
+        const response = await http.get("/api/v1/admin/products", config)
+        // const response = await http.get("/api/v1/admin/products")
         return response.data
     } catch (error) {
         if (error.response) {
@@ -83,8 +95,15 @@ export const getAdminProducts = createAsyncThunk('product/getAdminProducts', asy
     }
 })
 export const getProductDetails = createAsyncThunk('product/getProductDetails', async (id) => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+        },
+    };
     try {
-        const response = await axios.get(`/api/v1/product/${id}`)
+        // const response = await axios.get(`/api/v1/product/${id}`)
+        const response = await http.get(`/api/v1/product/${id}`, config)
         return response.data
     } catch (error) {
         if (error.response) {
@@ -102,9 +121,17 @@ export const getProductDetails = createAsyncThunk('product/getProductDetails', a
 })
 
 export const updateProduct = createAsyncThunk('product/updateProduct', async (data) => {
-    const config = { headers: { 'Content-Type': 'multipart/form-data' }, withCredentials: true };
+    // const config = { headers: { 'Content-Type': 'multipart/form-data' }, withCredentials: true };
+    const token = JSON.parse(localStorage.getItem('token'));
+    const config = {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+        },
+    };
     try {
-        const response = await axios.put(`/api/v1/admin/product/${data.id}`, data.formData, config)
+        // const response = await axios.put(`/api/v1/admin/product/${data.id}`, data.formData, config)
+        const response = await http.put(`/api/v1/admin/product/${data.id}`, data.formData, config)
         return response.data
     } catch (error) {
         if (error.response) {
@@ -121,9 +148,16 @@ export const updateProduct = createAsyncThunk('product/updateProduct', async (da
     }
 })
 export const updateDiscount = createAsyncThunk('product/updateDiscount', async (data) => {
-    const config = { withCredentials: true };
+    // const config = { withCredentials: true };
+    const token = JSON.parse(localStorage.getItem('token'));
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+        },
+    };
     try {
-        const response = await axios.put(`/api/v1/admin/products/updateDiscount`, data, config)
+        // const response = await axios.put(`/api/v1/admin/products/updateDiscount`, data, config)
+        const response = await http.put(`/api/v1/admin/products/updateDiscount`, data, config)
         return response.data
     } catch (error) {
         if (error.response) {
@@ -141,15 +175,22 @@ export const updateDiscount = createAsyncThunk('product/updateDiscount', async (
 })
 
 export const deleteProducts = createAsyncThunk('product/deleteProducts', async (productIds, thunkAPI) => {
+    // const config = {
+    //   headers: { 'Content-Type': 'application/json' },
+    //   withCredentials: true,
+    // };
+    const token = JSON.parse(localStorage.getItem('token'));
     const config = {
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+        },
     };
     
     try {
       const dataToSend = JSON.stringify({ productIds });
   
-      const response = await axios.delete(`/api/v1/admin/products/delete`, {
+      const response = await http.delete(`/api/v1/admin/products/delete`, {
         ...config,
         data: dataToSend, // Send the data in the 'data' field of the config.
       });

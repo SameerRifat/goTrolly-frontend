@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import API from '../../components/APIs/Api';
+const { http } = API();
 
 const initialState = {
     loading: true,
@@ -9,10 +11,10 @@ const initialState = {
 }
 // login
 export const login = createAsyncThunk('user/login', async (data) => {
-    console.log("login called")
     const config = { headers: { 'Content-Type': 'application/json' }, withCredentials: true };
     try {
-        const response = await axios.post("/api/v1/login", data, config);
+        // const response = await axios.post("/api/v1/login", data, config);
+        const response = await http.post("/api/v1/login", data, config);
         return response.data;
     } catch (error) {
         if (error.response) {
@@ -33,7 +35,8 @@ export const login = createAsyncThunk('user/login', async (data) => {
 export const register = createAsyncThunk('user/register', async (data) => {
     const config = { headers: { 'Content-Type': 'application/json' }, withCredentials: true };
     try {
-        const response = await axios.post("/api/v1/register", data, config)
+        // const response = await axios.post("/api/v1/register", data, config)
+        const response = await http.post("/api/v1/register", data, config)
         return response.data
     } catch (error) {
         if (error.response) {
@@ -51,8 +54,16 @@ export const register = createAsyncThunk('user/register', async (data) => {
 })
 // loadUser
 export const loadUser = createAsyncThunk('user/loadUser', async () => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+        },
+        // withCredentials: true
+    };
     try {
-        const response = await axios.get("/api/v1/me")
+        // const response = await axios.get("/api/v1/me", config)
+        const response = await http.get("/api/v1/me", config);
         return response.data
     } catch (error) {
         if (error.response) {
@@ -70,7 +81,8 @@ export const loadUser = createAsyncThunk('user/loadUser', async () => {
 })
 // logout
 export const logout = createAsyncThunk('user/logout', async () => {
-    const response = await axios.get("/api/v1/logout")
+    // const response = await axios.get("/api/v1/logout")
+    const response = await http.get("/api/v1/logout")
     return response.data
 })
 
@@ -111,6 +123,7 @@ const userSlice = createSlice({
             state.loading = false
             state.isAuthenticated = true
             state.user = action.payload.user
+            localStorage.setItem("token", JSON.stringify(action.payload.token));
         })
         builder.addCase(login.rejected, (state, action) => {
             state.loading = false
@@ -126,6 +139,7 @@ const userSlice = createSlice({
             state.loading = false
             state.isAuthenticated = true
             state.user = action.payload.user
+            localStorage.setItem("token", JSON.stringify(action.payload.token));
         })
         builder.addCase(register.rejected, (state, action) => {
             state.loading = false
@@ -156,6 +170,7 @@ const userSlice = createSlice({
             state.loading = false
             state.isAuthenticated = false
             state.user = null
+            localStorage.removeItem('token');
         })
         builder.addCase(logout.rejected, (state, action) => {
             state.loading = false
