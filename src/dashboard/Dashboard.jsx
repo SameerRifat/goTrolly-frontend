@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from '../images/logo.png'
+// import logo from '../images/logo.png'
 import avatar from '../images/avatar.jpg'
 import { NavLink, Outlet } from 'react-router-dom';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
