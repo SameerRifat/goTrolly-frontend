@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from '../images/logo.png'
+// import logo from '../images/logo.png'
 import { NavLink } from 'react-router-dom';
 
 const navigation = [
@@ -25,7 +25,8 @@ const Navbar = () => {
                         <span className="sr-only">Your Company</span>
                         <img
                             className="w-36 sm:w-40 md:w-48"
-                            src={logo}
+                            // src={logo}
+                            src="/images/logo2.jpg"
                             alt="logo"
                         />
                     </NavLink>

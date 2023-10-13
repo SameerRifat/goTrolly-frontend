@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from '../images/logo.png'
+// import logo from '../images/logo.png'
 import avatar from '../images/avatar.jpg'
 import { NavLink } from 'react-router-dom';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -21,7 +21,8 @@ const Navbar = () => {
                         <span className="sr-only">Your Company</span>
                         <img
                             className="w-32 sm:w-40 md:w-48"
-                            src={logo}
+                            // src={logo}
+                            src="/images/logo2.jpg"
                             alt="logo"
                         />
                     </NavLink>
@@ -41,10 +42,10 @@ const Navbar = () => {
                     <Box
                         display='flex'
                         sx={{
-                            '& .MuiButton-root':{
+                            '& .MuiButton-root': {
                                 minWidth: isNonMobileScreens ? '64px' : '0px'
                             }
-                        }} 
+                        }}
                     >
                         <Button>
                             <CheckCircleOutlineIcon fontSize={isNonMobileScreens ? 'large' : 'small'} className='text-black' />
