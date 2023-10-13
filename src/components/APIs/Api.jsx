@@ -3,9 +3,9 @@ import axios from 'axios';
 export default function API() {
 
   const http = axios.create({
-    //  baseURL: 'https://grit.cybergen.com/laravel/api/', 
+     baseURL: 'https://gotrolly-api.onrender.com/', 
 
-    baseURL: 'http://localhost:4000/', 
+    // baseURL: 'http://localhost:4000/', 
     // headers: {
     //   'Content-Type': 'application/json',
     // },
@@ -15,12 +15,12 @@ export default function API() {
   });
 
   const appUrl = window.location.origin;
-  const API_Url = 'http://localhost:4000/';
-  const IMAGE_PUBLIC_PATH = 'http://localhost:4000/';
+  // const API_Url = 'http://localhost:4000/';
+  // const IMAGE_PUBLIC_PATH = 'http://localhost:4000/';
 
 
-  // const API_Url = 'https://grit.cybergen.com/laravel/api/';
-  // const IMAGE_PUBLIC_PATH = 'https://grit.cybergen.com/laravel/';
+  const API_Url = 'https://gotrolly-api.onrender.com/';
+  const IMAGE_PUBLIC_PATH = 'https://gotrolly-api.onrender.com/';
 
   return {
     http,
