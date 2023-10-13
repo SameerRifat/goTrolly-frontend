@@ -6,7 +6,7 @@ import { Box, FormHelperText, IconButton, InputAdornment, OutlinedInput } from '
 import { NavLink, useNavigate } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import logo from '../../images/logo.png'
+// import logo from '../../images/logo.png'
 import { clear_errors, register } from '../../features/user/userSlice';
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify';
