@@ -6,7 +6,7 @@ import { Box, FormHelperText, IconButton, InputAdornment, OutlinedInput } from '
 import { NavLink, useNavigate } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import logo from '../../images/logo.png'
+import logo from '../../images/logo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { clear_errors, login } from '../../features/user/userSlice';
 import { toast } from 'react-toastify'
@@ -57,7 +57,10 @@ const LoginPage = () => {
       <div className='h-full'>
         <div className='mt-1'>
           <NavLink to='/' className='ml-3 md:ml-10 inline-block'>
-            <img src={logo} alt="logo"
+            <img
+              // src={logo}
+              src="/images/logo2.jpg"
+              alt="logo"
               className='w-36 sm:w-40 md:w-48'
             />
           </NavLink>

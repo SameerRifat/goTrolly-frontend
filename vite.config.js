@@ -11,7 +11,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 const isLocalBackend = process.env.VITE_REACT_APP_LOCAL_BACKEND === 'true';
-console.log('isLocalBackend: ', isLocalBackend);
 
 export default defineConfig({
   plugins: [react()],

@@ -72,7 +72,10 @@ const RegisterPage = () => {
       <div className='h-full'>
         <div className='mt-1'>
           <NavLink to='/' className='ml-3 md:ml-10 inline-block'>
-            <img src={logo} alt="logo"
+            <img
+              // src={logo}
+              src="/images/logo2.jpg"
+              alt="logo"
               className='w-36 sm:w-40 md:w-48'
             />
           </NavLink>
