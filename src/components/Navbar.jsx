@@ -61,7 +61,8 @@ const Navbar = () => {
                             <span className="sr-only">Your Company</span>
                             <img
                                 className="h-8 w-auto"
-                                src={logo}
+                                // src={logo}
+                                src="/images/logo2.jpg"
                                 alt=""
                             />
                         </a>
