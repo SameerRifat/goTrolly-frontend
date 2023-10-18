@@ -11,7 +11,7 @@ const ProductCard = ({ product, isTopSelling=false }) => {
     return (
         <NavLink to={`/product/${_id}`} className={`pb-3 ${isTopSelling ? 'text-black' : 'text-white'}`}>
             <div className="group relative flex flex-col">
-                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden lg:aspect-none group-hover:opacity-75 h-64 md:h-96 min-h-64 md:min-h-96">
+                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden lg:aspect-none group-hover:opacity-75 h-60 min-h-60 md:h-96 md:min-h-96">
                     <img
                         src={firstImageSrc}
                         alt={name}

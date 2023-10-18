@@ -10,6 +10,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { clear_errors, register } from '../../features/user/userSlice';
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify';
+import LoadingButton from '@mui/lab/LoadingButton/LoadingButton';
 
 
 const userSchema = yup.object().shape({
@@ -196,18 +197,35 @@ const RegisterPage = () => {
                     </div> */}
                   </div>
                   <div className='text-center'>
-                    <button
+                    {/* <button
                       type="submit"
                       className='uppercase px-6 py-1 bg-main text-xl font-medium'
                     >
                       Register
-                    </button>
+                    </button> */}
+                    <LoadingButton loading={loading} variant="contained"
+                      type='submit'
+                      sx={{
+                        backgroundColor: '#EAD820',
+                        color: 'black',
+                        ':hover': {
+                          bgcolor: '#ead920a6'
+                        },
+                        ":disabled": {
+                          bgcolor: '#ead920ed',
+                        },
+                        px: '30px',
+                        fontSize: '16px'
+                      }}
+                    >
+                      Register
+                    </LoadingButton>
                   </div>
                 </Form>
               )}
             </Formik>
             <div className='text-center mt-1'>
-              <NavLink to="/register" className="text-sm text-gray-400 uppercase">
+              <NavLink to="/login" className="text-sm text-gray-400 uppercase">
                 have an account? login
               </NavLink>
             </div>

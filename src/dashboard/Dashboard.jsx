@@ -116,7 +116,7 @@ const Dashboard = () => {
       <div className='bg-black h-14 flex items-center justify-end px-3 md:px-6'>
         <div className='flex items-center'>
           <NavLink to="/" className="text-yellow uppercase text-lg font-medium border-r border-yellow px-3 py-1.5">Main page</NavLink>
-          <NavLink to="/totalEarnings" className="text-yellow uppercase text-lg font-medium px-3 pr-0 py-1.5">total earnings</NavLink>
+          <NavLink to="#" className="text-yellow uppercase text-lg font-medium px-3 pr-0 py-1.5">total earnings</NavLink>
         </div>
       </div>
       <Navbar />

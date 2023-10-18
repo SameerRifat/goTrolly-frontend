@@ -100,7 +100,6 @@ const ProductsPage = () => {
             setProductTypesToShow(productTypes.filter((productType) => productType.categoryId._id === category._id))
             setBrandsToShow(brands.filter((brand) => brand.categoryId._id === category._id))
         }
-        console.log('categroy: ', category)
     }, [categories, products, productTypes]);
 
     return (

@@ -12,11 +12,13 @@ import { toast } from 'react-toastify';
 const backendUrl = import.meta.env.VITE_REACT_APP_API_URL;
 import Loader from '../../components/Loader'
 import LoadingButton from '@mui/lab/LoadingButton/LoadingButton';
+import { clear_get_categories_error, getCategories } from '../../features/category/categorySlice';
 
 const ProductsGrid = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const isNonMobileScreens = useMediaQuery('(min-width:600px)');
+  const [products, setProducts] = React.useState([]);
   const [category, setCategory] = React.useState('');
   const [keyword, setKeyword] = React.useState('');
   const [productId, setProductId] = useState('');
@@ -42,9 +44,26 @@ const ProductsGrid = () => {
     setOpen(false);
   };
   const { getAdminProductsLoading, adminProducts, getAdminProductsError, deleteProductLoading, isProductDeleted, deleteProductError } = useSelector((state) => state.product)
+  const { getCategoriesLoading, categories, getCategoriesError, deleteCategoryLoading, isCategoryDeleted, deleteCategoryError } = useSelector((state) => state.category)
   useEffect(() => {
     dispatch(getAdminProducts())
+    dispatch(getCategories())
   }, [dispatch])
+  useEffect(() => {
+    if (getCategoriesError) {
+        toast.error(getCategoriesError, {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+        dispatch(clear_get_categories_error())
+    }
+}, [dispatch, getCategoriesError])
   useEffect(() => {
     if (getAdminProductsError) {
       toast.error(getAdminProductsError, {
@@ -91,6 +110,36 @@ const ProductsGrid = () => {
       dispatch(clear_delete_product_error())
     }
   }, [dispatch, isProductDeleted, deleteProductError])
+
+  const getVisibleProduct = (products, category ,search) => {
+    // FILTER PRODUCTS
+    if (category !== '') {
+
+      //products = filter(products, (_product) => includes(_product.category, filters.category));
+      products = products.filter((_product) => _product.category._id === category);
+      setProducts(products)
+    }
+
+    if (search !== '') {
+      products = products.filter((_product) =>
+        _product.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
+      );
+      setProducts(products)
+    }
+    // return products;
+    setProducts(products)
+  };
+
+  useEffect(() => {
+    if(adminProducts){
+      getVisibleProduct(adminProducts, category, keyword)
+    }
+  }, [adminProducts, category, keyword])
+  console.log('products: ', products)
+
+  // const getProducts = () => {
+  //   getVisibleProduct(adminProducts, category, keyword)
+  // }
 
   return (
     <>
@@ -141,14 +190,16 @@ const ProductsGrid = () => {
                   label="Category"
                 >
                   <MenuItem value="">
-                    <em>None</em>
+                    <em>All</em>
                   </MenuItem>
-                  <MenuItem value={10}>Value 1</MenuItem>
-                  <MenuItem value={20}>Value 2</MenuItem>
-                  <MenuItem value={30}>Value 3</MenuItem>
+                  {categories && categories.length > 0 && categories.map((cat) => {
+                    return (
+                      <MenuItem value={cat._id}>{cat.category}</MenuItem>
+                    )
+                  })}
                 </Select>
               </FormControl>
-              <FormControl variant="standard" sx={{ m: 1, minWidth: 120, color: 'white' }}>
+              {/* <FormControl variant="standard" sx={{ m: 1, minWidth: 120, color: 'white' }}>
                 <InputLabel id="demo-simple-select-standard-label">last added</InputLabel>
                 <Select
                   labelId="demo-simple-select-standard-label"
@@ -164,7 +215,7 @@ const ProductsGrid = () => {
                   <MenuItem value={20}>Value 2</MenuItem>
                   <MenuItem value={30}>Value 3</MenuItem>
                 </Select>
-              </FormControl>
+              </FormControl> */}
             </Box>
             <Box display='flex' alignItems='center' gap='10px'>
               <Tooltip title="grid view">
@@ -183,8 +234,8 @@ const ProductsGrid = () => {
         {getAdminProductsLoading ? <Loader /> : (
           <div className="grid gap-x-3 sm:gap-x-6 gap-y-5 sm:gap-y-10 grid-cols-2 above-md:grid-cols-3 lg:grid-cols-3 xl:gap-x-8">
             {
-              adminProducts.length > 0 ? (
-                adminProducts.map((product) => {
+              products.length > 0 ? (
+                products.map((product) => {
                   const { _id, name, sold, images } = product
                   return (
                     <div onClick={() => navigate(`/admin/productDetails/${_id}`)} key={_id} className=' bg-white cursor-pointer'>

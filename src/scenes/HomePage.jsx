@@ -34,7 +34,7 @@ const HomePage = () => {
   }, [])
   return (
     <div className='pb-10'>
-      <div className='bg-main h-[50vh] sm:h-[60vh] md:h-[70vh]'>
+      <div className='bg-main h-[40vh] sm:h-[60vh] md:h-[70vh]'>
         <img src={banner1} alt="banner" className='w-full h-full sm:object-center object-cover' />
       </div>
       <div className='px-3 md:px-6 py-4'>
@@ -64,6 +64,7 @@ const HomePage = () => {
               }}
               pagination={{ clickable: true }}
               modules={[Pagination, Autoplay]}
+              
             // className=" bg-black p-1 md:p-5 pb-1 mt-6"
             >
               {products.length > 0 ? (

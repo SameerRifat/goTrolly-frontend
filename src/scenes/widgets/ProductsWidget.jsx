@@ -67,7 +67,9 @@ const ProductsWidget = ({
                     : ''
                 }
             </div>
-            <div className="grid gap-x-3 sm:gap-x-6 gap-y-5 sm:gap-y-10 grid-cols-2 above-md:grid-cols-3 lg:grid-cols-3 xl:gap-x-8">
+            <div
+                className="grid gap-x-3 sm:gap-x-6 gap-y-5 sm:gap-y-10 grid-cols-2 above-md:grid-cols-3 lg:grid-cols-3 xl:gap-x-8"
+            >
                 {
                     products && products.length > 0 ? (
                         products && products.map((product) => {

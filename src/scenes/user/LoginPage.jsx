@@ -10,6 +10,8 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useDispatch, useSelector } from 'react-redux';
 import { clear_errors, login } from '../../features/user/userSlice';
 import { toast } from 'react-toastify'
+import MetaData from '../../components/MetaData';
+import LoadingButton from '@mui/lab/LoadingButton/LoadingButton';
 
 
 const userSchema = yup.object().shape({
@@ -38,7 +40,7 @@ const LoginPage = () => {
     if (isAuthenticated) {
       navigate(redirect)
     }
-    if (error && error !== 'Please login to access this resourse') {
+    if (error && error !== 'Please login to access this resourse' && error !== "json web token is invalid, try again") {
       toast.error(error, {
         position: "bottom-center",
         autoClose: 2000,
@@ -54,6 +56,7 @@ const LoginPage = () => {
   }, [isAuthenticated, error, dispatch, navigate])
   return (
     <>
+      <MetaData title='GoTrolly - Login' />
       <div className='h-full'>
         <div className='mt-1'>
           <NavLink to='/' className='ml-3 md:ml-10 inline-block'>
@@ -67,7 +70,7 @@ const LoginPage = () => {
         </div>
         <div className='mt-4 mb-10'>
           <h1 className='uppercase text-3xl sm:text-4xl md:text-5xl font-semibold sm:font-bold md:font-extrabold text-center'>Login</h1>
-          <div className="mt-12 sm:mx-auto px-3 sm:px-0 sm:w-full sm:max-w-lg">
+          <div className="mt-12 sm:mx-auto px-4 sm:px-0 sm:w-full sm:max-w-lg">
             <Formik
               onSubmit={handleFormSubmit}
               initialValues={{ email: '', password: '' }}
@@ -150,18 +153,35 @@ const LoginPage = () => {
                       </FormHelperText>
                     </Box>
                     <div className="text-sm">
-                      <NavLink to="/password/forgot" className="text-sm text-gray-400 uppercase">
+                      <NavLink to="#" className="text-sm text-gray-400 uppercase">
                         Forgot password?
                       </NavLink>
                     </div>
                   </div>
                   <div className='text-center'>
-                    <button
+                    {/* <button
                       type="submit"
                       className='uppercase px-6 py-1 bg-main text-xl font-medium'
                     >
                       Sign in
-                    </button>
+                    </button> */}
+                    <LoadingButton loading={loading} variant="contained"
+                      type='submit'
+                      sx={{
+                        backgroundColor: '#EAD820',
+                        color: 'black',
+                        ':hover': {
+                          bgcolor: '#ead920a6'
+                        },
+                        ":disabled": {
+                          bgcolor: '#ead920ed',
+                        },
+                        px: '30px',
+                        fontSize: '16px'
+                      }}
+                    >
+                      Sign in
+                    </LoadingButton>
                   </div>
                 </Form>
               )}

@@ -99,7 +99,6 @@ const Filters = ({ mobileFiltersOpen, setMobileFiltersOpen, }) => {
     const isNonMobileScreens = useMediaQuery('(min-width:640px)');
     const navigate = useNavigate()
     const [selectedOption, setSelectedOption] = useState('')
-    console.log('selectedOption: ', selectedOption)
     const [ratings, setRatings] = useState(0)
     const handleRatingsChange = (option) => {
         setRatings(0)
@@ -195,7 +194,7 @@ const Filters = ({ mobileFiltersOpen, setMobileFiltersOpen, }) => {
                                                 <>
                                                     <h3 className="-mx-2 -my-3 flow-root">
                                                         <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
-                                                            <span className="font-medium text-gray-900">Product Type</span>
+                                                            <span className="font-medium text-gray-900">main options:</span>
                                                             <span className="ml-6 flex items-center">
                                                                 {open ? (
                                                                     <MinusIcon className="h-5 w-5" aria-hidden="true" />

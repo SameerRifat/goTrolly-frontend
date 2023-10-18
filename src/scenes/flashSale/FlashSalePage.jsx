@@ -122,7 +122,7 @@ const FlashSalePage = () => {
               <SwiperSlide key={_id}
                 className='bg-mustard border-2 border-tulip-tree'
               >
-                <NavLink to={`#`}
+                <div
                 // className=' text-white bg-mustard border-2 border-tulip-tree'
                 >
                   <div className="group relative">
@@ -139,11 +139,11 @@ const FlashSalePage = () => {
                       </h3>
                       <div className=''>
                         {/* <h4 className='text-black text-lg sm:text-xl font-medium text-end'>Sale ending in 00:23:35</h4> */}
-                        <CountdownTimer offerEndTime={7} />
+                        <CountdownTimer offerEndTime={Math.floor(Math.random() * 10)} />
                       </div>
                     </div>
                   </div>
-                </NavLink>
+                </div>
               </SwiperSlide>
             )
           })}

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
 import { Badge, Box, Button, IconButton } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -8,14 +8,20 @@ import { useSelector } from 'react-redux';
 
 const CommonNavbar = () => {
   const [keyword, setKeyword] = React.useState('');
+  const navigate = useNavigate();
   const [openSearchBox, setOpenSearchBox] = React.useState(false);
   const searchBoxRef = useRef(null);
   const searchButtonRef = useRef(null);
   const { isAuthenticated, user } = useSelector((state) => state.user)
 
-  const submitHandler = () => {
-    alert('keyword: ' + keyword);
-    setKeyword('');
+  const submitHandler = (e) => {
+    e.preventDefault()
+    if (keyword.trim()) {
+      navigate(`/products/${keyword}`)
+      setKeyword('')
+    } else {
+      navigate('/products')
+    }
   };
 
   // Add a click event listener to the document
@@ -92,6 +98,7 @@ const CommonNavbar = () => {
                   <button
                     type='submit'
                     onClick={submitHandler}
+                    disabled={keyword === ''}
                     className='bg-broom w-[6%] sm:w-[10%] min-w-[60px] sm:min-w-[70px] text-base sm:text-lg font-medium text-black border-none outline-none'
                   >
                     search
@@ -117,7 +124,7 @@ const CommonNavbar = () => {
                 }}
               >
                 <NavLink to='/cart'>
-                  <Badge badgeContent={cartItems.length > 0 ? cartItems.length : '0' } color="primary">
+                  <Badge badgeContent={cartItems.length > 0 ? cartItems.length : '0'} color="primary">
                     <ShoppingCartOutlinedIcon style={{ color: 'white' }} />
                   </Badge>
                 </NavLink>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import { Avatar, Badge, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, IconButton, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Avatar, Badge, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, IconButton, Rating, Tooltip, Typography, styled, useMediaQuery, useTheme } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
@@ -8,6 +8,7 @@ import TableRowsIcon from '@mui/icons-material/TableRows';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import DiscountOutlinedIcon from '@mui/icons-material/DiscountOutlined';
+import StarIcon from '@mui/icons-material/Star';
 import CloseIcon from '@mui/icons-material/Close';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,9 +19,18 @@ import Loader from '../../components/Loader';
 import LoadingButton from '@mui/lab/LoadingButton/LoadingButton';
 const backendUrl = import.meta.env.VITE_REACT_APP_API_URL;
 
+const StyledRating = styled(Rating)({
+  '& .MuiRating-iconFilled': {
+    // color: 'white',
+    color: '#FFFF00',
+  },
+});
+
 const ProductsList = () => {
+  const isNonMobileScreens = useMediaQuery('(min-width:640px)');
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectedRowsData, setSelectedRowsData] = useState([]);
   const { getAdminProductsLoading, adminProducts, getAdminProductsError, deleteProductLoading, isProductDeleted, deleteProductError } = useSelector((state) => state.product)
@@ -99,8 +109,26 @@ const ProductsList = () => {
       type: 'number',
       headerAlign: 'left',
       align: 'left',
-      minWidth: 100,
-      flex: 0.7
+      minWidth: 200,
+      flex: 1,
+      renderCell: (params) => {
+        const options = {
+          value: params.row.ratings,
+          // value: 4,
+          readOnly: true,
+          precision: 0.5
+        }
+        return (
+          <>
+            <div className='flex items-center gap-2'>
+              <StyledRating {...options} size={isNonMobileScreens ? 'medium' : 'small'}
+                emptyIcon={<StarIcon style={{ opacity: 0.8, color: 'white' }} fontSize="inherit" />}
+              />
+              <span className='text-white font-medium text-xl'>{params.row.ratings}</span>
+            </div>
+          </>
+        );
+      },
     },
     {
       field: 'discountPercentage',

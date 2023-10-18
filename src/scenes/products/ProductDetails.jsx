@@ -158,8 +158,6 @@ const ProductDetails = () => {
     useEffect(() => {
         dispatch(getProductDetails(id))
     }, [dispatch, id])
-    console.log('productDetails: ', productDetails)
-    console.log('productDetails images: ', productDetails.images)
 
     return (
         <>
@@ -322,7 +320,10 @@ const ProductDetails = () => {
                             <div className="mx-auto max-w-2xl px-4 py-16 pt-5 sm:px-6 sm:py-24 sm:pt-8 lg:max-w-7xl lg:px-8">
                                 <h2 className="text-2xl font-medium tracking-tight text-white">You May Also Like</h2>
 
-                                <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                                <div
+                                    className="mt-6 grid grid-cols-2 gap-x-3 gap-y-5 md:grid-cols-3 lg:grid-cols-4 xl:gap-x-8"
+                                    // className="mt-6 grid gap-x-3 sm:gap-x-6 gap-y-5 sm:gap-y-10 grid-cols-2 above-md:grid-cols-3 lg:grid-cols-3 xl:gap-x-8"
+                                >
                                     {relatedProducts.map((product) => {
                                         const { _id, name, images, price, ratings } = product
                                         const options = {

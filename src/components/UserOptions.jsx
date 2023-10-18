@@ -9,6 +9,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clear_errors, logout } from '../features/user/userSlice';
 import { Avatar } from '@mui/material';
+import { toast } from 'react-toastify';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -106,7 +107,7 @@ const UserOptions = ({ user }) => {
                         {options.map((item) => {
                             return <Menu.Item>
                                 {({ active }) => (
-                                    <div onClick={item.func} className={classNames(active ? 'bg-gray-100' : '', 'px-4 py-2 text-sm text-gray-700 flex items-center gap-2 cursor-pointer')}>
+                                    <div onClick={item.func} className={classNames(active ? 'bg-broom' : '', 'px-4 py-2 text-sm text-gray-700 flex items-center gap-2 cursor-pointer')}>
                                         {item.icon}
                                         <p>{item.name}</p>
                                     </div>

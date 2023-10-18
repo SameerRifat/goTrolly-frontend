@@ -70,7 +70,7 @@ const Cart = () => {
                                                     // src={item.color || item.image}
                                                     src={item.color ? `${backendUrl}${item.color}` : `${backendUrl}${item.image}`}
                                                     alt={item.name}
-                                                    className="h-full w-full object-contain object-center"
+                                                    className="h-full w-full object-cover object-center"
                                                 />
                                             </div>
                                             <div className='flex flex-col justify-between pl-3'>
@@ -79,9 +79,9 @@ const Cart = () => {
                                                     {/* <h3 className='text-lg font-semibold'>{item.name}</h3> */}
                                                     {item.size && <p>Size: {item.size}</p>}
                                                 </div>
-                                                <h4 className='text-base font-semibold'>
+                                                <h4 className='text-base font-medium'>
                                                     <span><small>Rs.</small> {item.price}.00 * {item.quantity} = </span>
-                                                    <span className=' text-orange-500'>{item.price * item.quantity}.00</span>
+                                                    <span className=''>{item.price * item.quantity}.00</span>
                                                 </h4>
                                             </div>
                                         </div>

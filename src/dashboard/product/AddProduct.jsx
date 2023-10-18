@@ -236,7 +236,7 @@ const AddProduct = () => {
               <Form onSubmit={handleSubmit} encType='multipart/form-data'>
                 <Grid container spacing={3}
                 >
-                  <Grid item sm={12} md={6}>
+                  <Grid item width='100%' sm={12} md={6}>
                     <label htmlFor="email" className="block text-lg uppercase font-medium leading-6 text-black">
                       Name
                     </label>
@@ -262,7 +262,7 @@ const AddProduct = () => {
                       />
                     </Box>
                   </Grid>
-                  <Grid item sm={12} md={6}>
+                  <Grid item width='100%' sm={12} md={6}>
                     <label htmlFor="email" className="block text-lg uppercase font-medium leading-6 text-black">
                       category
                     </label>
@@ -289,7 +289,7 @@ const AddProduct = () => {
                       </FormControl>
                     </Box>
                   </Grid>
-                  <Grid item sm={12} md={6}>
+                  <Grid item width='100%' sm={12} md={6}>
                     <label htmlFor="email" className="block text-lg uppercase font-medium leading-6 text-black">
                       Product Type
                     </label>
@@ -316,7 +316,7 @@ const AddProduct = () => {
                       </FormControl>
                     </Box>
                   </Grid>
-                  <Grid item sm={12} md={6}>
+                  <Grid item width='100%' sm={12} md={6}>
                     <label htmlFor="email" className="block text-lg uppercase font-medium leading-6 text-black">
                       brand
                     </label>
@@ -343,7 +343,7 @@ const AddProduct = () => {
                       </FormControl>
                     </Box>
                   </Grid>
-                  <Grid item sm={12} md={6} >
+                  <Grid item width='100%' sm={12} md={6} >
                     <label htmlFor="email" className="block text-lg uppercase font-medium leading-6 text-black">
                       price
                     </label>
@@ -369,7 +369,7 @@ const AddProduct = () => {
                       />
                     </Box>
                   </Grid>
-                  <Grid item sm={12} md={6}>
+                  <Grid item width='100%' sm={12} md={6}>
                     <label htmlFor="email" className="block text-lg uppercase font-medium leading-6 text-black">
                       stock
                     </label>
@@ -405,7 +405,7 @@ const AddProduct = () => {
                     />
                   </div>
                 </Grid> */}
-                  <Grid item sm={12} lg={8} minHeight='88px'>
+                  <Grid item width='100%' sm={12} lg={8} minHeight='88px'>
                     <div style={{ border: `1px dashed #EAD820`, borderRadius: '8px' }} className='flex gap-2 overflow-x-auto p-2'>
                       {imagesPreview.length > 0 ? (
                         imagesPreview.map((image, ind) => (
@@ -423,7 +423,7 @@ const AddProduct = () => {
                     </div>
                   </Grid>
 
-                  <Grid item sm={12} lg={4}>
+                  <Grid item width='100%' sm={12} lg={4}>
                     <Box id='product-images' sx={{
                       '& input::-webkit-file-upload-button': {
                         cursor: 'pointer',
@@ -446,7 +446,7 @@ const AddProduct = () => {
                       <input type="file" name="images" accept='image/*' required multiple onChange={imageChangeEvent} />
                     </Box>
                   </Grid>
-                  <Grid item sm={12} lg={8} minHeight='88px'>
+                  <Grid item sm={12} width='100%' lg={8} minHeight='88px'>
                     <div style={{ border: `1px dashed #EAD820`, borderRadius: '8px' }} className='flex gap-2 overflow-x-auto p-2'>
                       {colorImagesPreview.length > 0 ? (
                         colorImagesPreview.map((image, ind) => (
@@ -463,7 +463,7 @@ const AddProduct = () => {
                       )}
                     </div>
                   </Grid>
-                  <Grid item sm={12} lg={4}>
+                  <Grid item sm={12} width='100%' lg={4}>
                     <Box id='product-images' sx={{
                       '& input::-webkit-file-upload-button': {
                         cursor: 'pointer',

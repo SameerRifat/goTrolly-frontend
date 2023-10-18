@@ -147,3 +147,40 @@ i{
       75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
       100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
   }
+
+/* CheckoutSteps page styles */
+.Mui-active{
+    color: tomato;
+}
+.Mui-completed{
+    color: green;
+}
+
+.text-green{
+    color: rgb(1, 221, 1);
+    font-size: 16px;
+    font-weight: 600;
+}
+.text-green-dark{
+    color: rgb(0, 161, 0);
+    font-size: 16px;
+    font-weight: 500;
+}
+.text-red{
+    color: tomato;
+    font-size: 16px;
+    font-weight: 600;
+}
+.text-white{
+    color: white;
+}
+.text-blue{
+    color: blue;
+    font-size: 16px;
+    font-weight: 600;
+}
+.text-blue-dark{
+    color: rgb(0, 0, 175);
+    font-size: 16px;
+    font-weight: 500;
+}
