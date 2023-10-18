@@ -159,7 +159,7 @@ i{
 .text-green{
     color: rgb(1, 221, 1);
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
 }
 .text-green-dark{
     color: rgb(0, 161, 0);
@@ -169,7 +169,7 @@ i{
 .text-red{
     color: tomato;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
 }
 .text-white{
     color: white;
@@ -184,3 +184,26 @@ i{
     font-size: 16px;
     font-weight: 500;
 }
+
+@media screen and (max-width: 640px) {
+    .text-green{
+        color: rgb(1, 221, 1);
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .text-green-dark{
+        color: rgb(0, 161, 0);
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .text-red{
+        color: tomato;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .text-blue{
+        color: blue;
+        font-size: 14px;
+        font-weight: 600;
+    }
+  }

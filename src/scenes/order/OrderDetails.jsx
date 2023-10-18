@@ -123,7 +123,7 @@ const OrderDetails = () => {
                                             <p className='text-lg font-medium'>Phone:</p>
                                             <span className='text-base'>{orderDetails.shippingInfo.phoneNo}</span>
                                         </div>
-                                        <div className='flex items-center gap-1.5'>
+                                        <div className='flex sm:items-center gap-1.5'>
                                             <p className='text-lg font-medium'>Address:</p>
                                             <span className='text-base'>{`${orderDetails.shippingInfo.address}, ${orderDetails.shippingInfo.city}, ${orderDetails.shippingInfo.state}, ${orderDetails.shippingInfo.pinCode}, ${orderDetails.shippingInfo.country}`}</span>
                                         </div>

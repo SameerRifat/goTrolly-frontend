@@ -25,12 +25,16 @@ const MyOrders = () => {
       headerName: "Order ID",
       minWidth: 130,
       flex: 1,
+      disableColumnMenu: true,
+      sortable: false
     },
     {
       field: "status",
       headerName: "Status",
       minWidth: 100,
       flex: 0.7,
+      sortable: false,
+      disableColumnMenu: true,
       cellClassName: (params) => {
         return params.row.status === "Delivered" ? "text-green" : "text-blue";
       },
@@ -41,6 +45,8 @@ const MyOrders = () => {
       type: "number",
       minWidth: 70,
       flex: 0.5,
+      sortable: false,
+      disableColumnMenu: true,
     },
     {
       field: "amount",
@@ -48,6 +54,8 @@ const MyOrders = () => {
       type: "number",
       minWidth: 80,
       flex: 1,
+      sortable: false,
+      disableColumnMenu: true,
     },
     {
       field: "actions",
@@ -56,6 +64,7 @@ const MyOrders = () => {
       minWidth: 70,
       flex: 0.5,
       sortable: false,
+      disableColumnMenu: true,
       renderCell: (params) => {
         const id = params.row.id;
         return (
@@ -127,7 +136,7 @@ const MyOrders = () => {
                   },
                   '& .MuiDataGrid-columnHeaderTitle': {
                     fontSize: isMobile ? '14px' : '16px',
-                    fontWeight: '600',
+                    fontWeight: isMobile ? '400' : '600',
                     // color: 'grey'
                     color: 'black'
                   },
