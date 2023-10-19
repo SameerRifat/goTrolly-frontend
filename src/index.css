@@ -177,7 +177,7 @@ i{
 .text-blue{
     color: blue;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
 }
 .text-blue-dark{
     color: rgb(0, 0, 175);
@@ -204,6 +204,6 @@ i{
     .text-blue{
         color: blue;
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 500;
     }
   }

@@ -53,7 +53,7 @@ const CommonNavbar = () => {
   return (
     <>
       <div className='px3 sm:px-6 flex items-center justify-between bg-black h-14'>
-        {user && user.role === 'admin' ? (
+        {/* {user && user.role === 'admin' ? (
           <div>
             <NavLink
               to='/admin/products'
@@ -62,7 +62,8 @@ const CommonNavbar = () => {
               dashboard
             </NavLink>
           </div>
-        ) : (<div></div>)}
+        ) : (<div></div>)} */}
+        <div></div>
         <div
           className='bg-black h-14 flex items-center justify-end px-3 md:px-6'
         >
